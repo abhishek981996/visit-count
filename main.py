@@ -3,7 +3,7 @@
 import webapp2
 import jinja2
 import os
-import hashlib
+import hmac
 from google.appengine.ext import db
 
 
@@ -14,8 +14,9 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 
 #making hash function 
 #here md5 algo is used
+Secret_value = "unknown_cookie_values_present_here_so_that_it_remains_secret"
 def hash_str(s):
-	return hashlib.md5(s).hexdigest()
+	return hmac.new(Secret_value,s).hexdigest()
 
 #making a secure value which returns a turple  of type (s,has_str)
 #where hash str is a hash value of a string
